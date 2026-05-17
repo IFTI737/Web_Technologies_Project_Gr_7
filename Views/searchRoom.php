@@ -1,6 +1,5 @@
 <?php
 
-
 include "../Includes/auth.php";
 
 include "../Includes/navbar.php";
@@ -8,40 +7,71 @@ include "../Includes/navbar.php";
 include "../Includes/sidebar.php";
 
 ?>
+
 <!DOCTYPE html>
+
 <html>
 
 <head>
-    <script src="../JS/searchRooms.js"></script>
 
-    <script src="../JS/booking.js"></script>
-    <link rel="stylesheet" href="../CSS/task3.css">
+<title>
 
-    <title>Search Rooms</title>
+Search Rooms
+
+</title>
+
+<link
+rel="stylesheet"
+href="../CSS/task3.css">
+
+<script src="../JS/searchRooms.js"></script>
+
+<script src="../JS/booking.js"></script>
 
 </head>
 
 <body>
-    <div class="content">
+
+<div class="content">
+
+<h2 class="page-title">
+
+Search Available Rooms
+
+</h2>
 
 
 
-<h2>Search Available Rooms</h2>
+<form class="form-container">
+
+<input
+type="date"
+id="checkin"
+class="form-input"
+min="<?php echo date('Y-m-d'); ?>">
 
 
 
-<form>
+<input
+type="date"
+id="checkout"
+class="form-input">
 
-<input type="date" id="checkin">
 
-<input type="date" id="checkout">
 
-<input type="number" id="guests">
+<input
+type="number"
+id="guests"
+class="form-input"
+placeholder="Guests"
+min="1">
+
+
 
 <button
 type="button"
-onclick="searchRooms()"
->
+class="simple-btn"
+onclick="searchRooms()">
 
 Search
 
@@ -50,22 +80,21 @@ Search
 </form>
 
 
+
 <div
 id="searchError"
-style="
-color:red;
-margin-top:10px;
-margin-bottom:10px;
-">
+class="error-text">
 
 </div>
+
+
 
 <div id="roomResults">
 
 </div>
 
-
 </div>
+
 </body>
 
 </html>

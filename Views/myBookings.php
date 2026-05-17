@@ -1,6 +1,7 @@
 <?php
 
 include "../Includes/auth.php";
+
 include "../Includes/navbar.php";
 
 include "../Includes/sidebar.php";
@@ -9,23 +10,15 @@ include "../Config/DatabaseCon.php";
 
 include "../Model/BookingModel.php";
 
-
-
 $db = new DatabaseCon();
 
 $connection = $db->openCon();
 
-
-
 $bookingModel =
 new BookingModel();
 
-
-
 $userId =
 $_SESSION['user_id'];
-
-
 
 $result =
 $bookingModel->getBookingsByUser(
@@ -39,18 +32,28 @@ $bookingModel->getBookingsByUser(
 ?>
 
 <!DOCTYPE html>
+
 <html>
 
 <head>
 
-    <title>My Bookings</title>
+<title>
+
+My Bookings
+
+</title>
+
+<link
+rel="stylesheet"
+href="../CSS/task3.css">
 
 </head>
 
 <body>
-    <div class="content">
 
-<h2>
+<div class="content">
+
+<h2 class="page-title">
 
 My Bookings
 
@@ -58,7 +61,7 @@ My Bookings
 
 
 
-<table border="1" cellpadding="10">
+<table class="simple-table">
 
 <tr>
 
@@ -105,8 +108,6 @@ Action
 </th>
 
 </tr>
-
-
 
 <?php
 
@@ -155,6 +156,7 @@ while(
 
 <td>
 
+BDT
 <?php echo $row['total_price']; ?>
 
 </td>
@@ -163,7 +165,37 @@ while(
 
 <td>
 
+<?php
+
+$statusClass = "";
+
+if($row['status'] == "Pending")
+{
+    $statusClass = "status-pending";
+}
+
+else if($row['status'] == "Confirmed")
+{
+    $statusClass = "status-confirmed";
+}
+
+else if($row['status'] == "Cancelled")
+{
+    $statusClass = "status-cancelled";
+}
+
+else
+{
+    $statusClass = "status-checked";
+}
+
+?>
+
+<span class="<?php echo $statusClass; ?>">
+
 <?php echo $row['status']; ?>
+
+</span>
 
 </td>
 
@@ -187,7 +219,7 @@ if(
 
     >
 
-    strtotime("+1 day")
+    strtotime(date("Y-m-d"))
 
 )
 
@@ -196,10 +228,10 @@ if(
 ?>
 
 <button
+class="simple-btn"
 onclick="cancelBooking(
 <?php echo $row['id']; ?>
-)"
->
+)">
 
 Cancel Booking
 
@@ -222,8 +254,11 @@ Cancel Booking
 ?>
 
 </table>
+
 <script src="../JS/booking.js"></script>
+
 </div>
+
 </body>
 
 </html>
