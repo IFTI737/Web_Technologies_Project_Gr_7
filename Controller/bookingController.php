@@ -259,6 +259,9 @@ else if($action == "book")
 
         );
 
+        $bookingId =
+       $connection->insert_id;
+
 
 
 
