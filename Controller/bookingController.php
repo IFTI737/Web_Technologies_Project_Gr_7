@@ -270,48 +270,54 @@ else if($action == "book")
 
            echo "
 
-                    <h2>
+                   
 
-                    Booking Successful
+            <div class='success-box'>
 
-                    </h2>
+            <h2>
 
-                    <p>
+            Booking Successful
 
-                    Booking ID:
-                    $bookingId
+            </h2>
 
-                    </p>
+            <p>
 
-                    <p>
+            Booking ID:
+            $bookingId
 
-                    Status:
-                    Pending
+            </p>
 
-                    </p>
+            <p>
 
-                    <p>
+            Status:
+            Pending
 
-                    Check-in:
-                    $checkin
+            </p>
 
-                    </p>
+            <p>
 
-                    <p>
+            Check-in:
+            $checkin
 
-                    Check-out:
-                    $checkout
+            </p>
 
-                    </p>
+            <p>
 
-                    <p>
+            Check-out:
+            $checkout
 
-                    Total Price:
-                    $totalPrice
+            </p>
 
-                    </p>
+            <p>
 
-                    ";
+            Total Price:
+            BDT $totalPrice
+
+            </p>
+
+            </div>
+
+            ";
 
         }
 

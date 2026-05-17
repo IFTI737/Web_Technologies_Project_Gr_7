@@ -1,48 +1,47 @@
-.page-title
+body
 {
-    margin-bottom: 20px;
+    background: #f5f6fa;
 }
 
 
 
-.simple-table
+.page-title
 {
-    width: 100%;
+    margin-bottom: 25px;
 
-    border-collapse: collapse;
+    font-size: 34px;
+}
 
+
+
+.form-container
+{
     background: white;
+
+    padding: 20px;
 
     border-radius: 10px;
 
-    overflow: hidden;
+    border: 1px solid #ddd;
+
+    margin-bottom: 25px;
 }
 
 
 
-.simple-table th
+.form-input
 {
-    background: #2d3436;
+    width: 220px;
 
-    color: white;
+    padding: 10px;
 
-    padding: 12px;
-}
+    border-radius: 6px;
 
+    border: 1px solid #ccc;
 
+    margin-right: 10px;
 
-.simple-table td
-{
-    padding: 12px;
-
-    border-bottom: 1px solid #ddd;
-}
-
-
-
-.simple-table tr:hover
-{
-    background: #f5f5f5;
+    margin-bottom: 10px;
 }
 
 
@@ -68,17 +67,20 @@
 
 .simple-btn:hover
 {
-    background: #555;
+    background: #005999;
 }
 
-.room-card h2
+
+
+.error-text
 {
-    margin-top: 0;
+    color: red;
 
-    margin-bottom: 12px;
+    margin-bottom: 15px;
 
-    font-size: 32px;
+    font-weight: bold;
 }
+
 
 
 .room-card
@@ -102,8 +104,6 @@
 
 
 
-
-
 .room-image img
 {
     width: 220px;
@@ -115,10 +115,25 @@
     border-radius: 8px;
 }
 
+
+
 .room-info
 {
     flex: 1;
 }
+
+
+
+.room-info h2
+{
+    margin-top: 0;
+
+    margin-bottom: 12px;
+
+    font-size: 28px;
+}
+
+
 
 .room-side
 {
@@ -126,6 +141,9 @@
 
     min-width: 180px;
 }
+
+
+
 .room-price
 {
     font-size: 28px;
@@ -135,32 +153,6 @@
     color: green;
 
     margin-bottom: 15px;
-}
-
-
-.form-input
-{
-    width: 250px;
-
-    padding: 10px;
-
-    border-radius: 6px;
-
-    border: 1px solid #ccc;
-
-    margin-bottom: 10px;
-}
-
-
-
-.error-text
-{
-    color: red;
-
-    margin-bottom: 10px;
-.page-title
-{
-    margin-bottom: 20px;
 }
 
 
@@ -176,6 +168,8 @@
     border-radius: 10px;
 
     overflow: hidden;
+
+    border: 1px solid #ddd;
 }
 
 
@@ -186,136 +180,83 @@
 
     color: white;
 
-    padding: 12px;
+    padding: 14px;
+
+    text-align: left;
 }
 
 
 
 .simple-table td
 {
-    padding: 12px;
+    padding: 14px;
 
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #eee;
 }
 
 
 
 .simple-table tr:hover
 {
-    background: #f5f5f5;
+    background: #f8f8f8;
 }
 
 
 
-.simple-btn
+.status-pending
 {
-    background: #0071c2;
-
-    color: white;
-
-    border: none;
-
-    padding: 12px 18px;
-
-    border-radius: 6px;
-
-    cursor: pointer;
-
-    font-size: 15px;
-}
-
-
-
-.simple-btn:hover
-{
-    background: #555;
-}
-
-.room-card h2
-{
-    margin-top: 0;
-
-    margin-bottom: 12px;
-
-    font-size: 32px;
-}
-
-
-.room-card
-{
-    display: flex;
-
-    gap: 20px;
-
-    background: white;
-
-    border: 1px solid #ddd;
-
-    border-radius: 10px;
-
-    padding: 20px;
-
-    margin-bottom: 20px;
-
-    align-items: flex-start;
-}
-
-
-
-
-
-.room-image img
-{
-    width: 220px;
-
-    height: 160px;
-
-    object-fit: cover;
-
-    border-radius: 8px;
-}
-
-.room-info
-{
-    flex: 1;
-}
-
-.room-side
-{
-    text-align: right;
-
-    min-width: 180px;
-}
-.room-price
-{
-    font-size: 28px;
+    color: orange;
 
     font-weight: bold;
+}
 
+
+
+.status-confirmed
+{
     color: green;
 
-    margin-bottom: 15px;
-}
-
-
-.form-input
-{
-    width: 250px;
-
-    padding: 10px;
-
-    border-radius: 6px;
-
-    border: 1px solid #ccc;
-
-    margin-bottom: 10px;
+    font-weight: bold;
 }
 
 
 
-.error-text
+.status-cancelled
 {
     color: red;
 
-    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+
+
+.status-checked
+{
+    color: #0071c2;
+
+    font-weight: bold;
+}
+
+
+
+.success-box
+{
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 10px;
+
+    border: 1px solid #ddd;
+
+    max-width: 500px;
+}
+
+
+
+.success-box h2
+{
+    color: green;
+
+    margin-top: 0;
 }

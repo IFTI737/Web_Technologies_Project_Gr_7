@@ -1,12 +1,15 @@
 <?php
 
 include "../Includes/auth.php";
+
 include "../Includes/navbar.php";
 
 include "../Includes/sidebar.php";
 
 include "../Config/DatabaseCon.php";
+
 include "../Model/UserModel.php";
+
 include "../Model/RoomModel.php";
 
 $db = new DatabaseCon();
@@ -17,11 +20,7 @@ $userModel = new UserModel();
 
 $roomModel = new RoomModel();
 
-
-
 $userId = $_SESSION['user_id'];
-
-
 
 $user =
 $userModel->getUserById(
@@ -31,8 +30,6 @@ $userModel->getUserById(
 
 $userData =
 $user->fetch_assoc();
-
-
 
 $room_type_id =
 $_GET['room_type_id'];
@@ -46,8 +43,6 @@ $_GET['checkout'];
 $guests =
 $_GET['guests'];
 
-
-
 $roomType =
 $roomModel->getRoomTypeById(
     $connection,
@@ -56,8 +51,6 @@ $roomModel->getRoomTypeById(
 
 $roomData =
 $roomType->fetch_assoc();
-
-
 
 $days =
 
@@ -71,29 +64,38 @@ $days =
 
 (60 * 60 * 24);
 
-
-
 $totalPrice =
 $days
 *
 $roomData['price_per_night'];
 
 ?>
+
 <!DOCTYPE html>
+
 <html>
 
 <head>
 
-    <title>Booking Form</title>
+<title>
+
+Booking Form
+
+</title>
+
+<link
+rel="stylesheet"
+href="../CSS/task3.css">
 
 </head>
 
 <body>
-    <div class="content">
+
+<div class="content">
 
 <div id="bookingArea">
 
-<h2>
+<h2 class="page-title">
 
 Booking Confirmation
 
@@ -101,18 +103,30 @@ Booking Confirmation
 
 
 
-<h3>
+<div class="form-container">
+
+<p>
+
+<strong>
 
 Room Type:
+
+</strong>
+
 <?php echo $roomData['name']; ?>
 
-</h3>
+</p>
 
 
 
 <p>
 
+<strong>
+
 Description:
+
+</strong>
+
 <?php echo $roomData['description']; ?>
 
 </p>
@@ -121,7 +135,13 @@ Description:
 
 <p>
 
+<strong>
+
 Price Per Night:
+
+</strong>
+
+BDT
 <?php echo $roomData['price_per_night']; ?>
 
 </p>
@@ -130,7 +150,12 @@ Price Per Night:
 
 <p>
 
+<strong>
+
 Check-in:
+
+</strong>
+
 <?php echo $checkin; ?>
 
 </p>
@@ -139,7 +164,12 @@ Check-in:
 
 <p>
 
+<strong>
+
 Check-out:
+
+</strong>
+
 <?php echo $checkout; ?>
 
 </p>
@@ -148,7 +178,12 @@ Check-out:
 
 <p>
 
+<strong>
+
 Guests:
+
+</strong>
+
 <?php echo $guests; ?>
 
 </p>
@@ -157,14 +192,23 @@ Guests:
 
 <p>
 
+<strong>
+
 Total Price:
+
+</strong>
+
+BDT
 <?php echo $totalPrice; ?>
 
 </p>
 
+</div>
 
 
-<form id="bookingForm">
+
+<form id="bookingForm"
+class="form-container">
 
 <input
 type="hidden"
@@ -194,75 +238,52 @@ value="<?php echo $guests; ?>">
 
 
 
-<table>
-
-<tr>
-
-<td>
+<p>
 
 Name
 
-</td>
-
-<td>
+</p>
 
 <input
 type="text"
+class="form-input"
 name="name"
 value="<?php echo $userData['name']; ?>">
 
-</td>
-
-</tr>
 
 
-
-<tr>
-
-<td>
+<p>
 
 Phone
 
-</td>
-
-<td>
+</p>
 
 <input
 type="text"
+class="form-input"
 name="phone"
 value="<?php echo $userData['phone']; ?>">
 
-</td>
-
-</tr>
 
 
+<br><br>
 
-<tr>
 
-<td>
 
 <input
 type="button"
 value="Confirm Booking"
 id="confirmButton"
+class="simple-btn"
 onclick="confirmRoomBooking()">
-
-</td>
-
-</tr>
-
-</table>
 
 </form>
 
 </div>
 
-
-
 <script src="../JS/booking.js"></script>
 
-    </div>
+</div>
 
 </body>
 
