@@ -62,6 +62,68 @@ class RoomModel
 
     }
 
+    function getAllRoomsWithOccupancy($connection)
+    {
+
+        $sql = "SELECT 
+            r.id,
+            r.room_number,
+            r.floor,
+            r.status,
+            rt.name AS room_type,
+            CASE
+                WHEN r.status = 'maintenance' THEN 'Maintenance'
+                WHEN EXISTS (
+                    SELECT 1 FROM bookings b 
+                    WHERE b.room_id = r.id 
+                    AND b.status IN ('Pending','Confirmed','Checked-In')
+                    AND CURDATE() BETWEEN b.checkin_date AND b.checkout_date
+                ) THEN 'Booked'
+                ELSE 'Available'
+            END AS occupancy_status
+        FROM rooms r
+        JOIN room_types rt ON r.room_type_id = rt.id
+        ORDER BY r.room_number";
+
+
+        return $connection->query($sql);
+
+    }
+
+    function updateRoom(
+        $connection,
+        $id,
+        $room_number,
+        $floor,
+        $room_type_id,
+        $status
+    )
+    {
+
+        $sql = "UPDATE rooms
+        SET room_number = ?,
+            floor = ?,
+            room_type_id = ?,
+            status = ?
+        WHERE id = ?";
+
+
+        $statement = $connection->prepare($sql);
+
+        $statement->bind_param(
+            "iissi",
+            $room_number,
+            $floor,
+            $room_type_id,
+            $status,
+            $id
+        );
+
+
+        return $statement->execute();
+
+    }
+
 
 
     function getAvailableRooms($connection)
@@ -72,6 +134,29 @@ class RoomModel
 
 
         return $connection->query($sql);
+
+    }
+
+    function toggleStatus(
+        $connection,
+        $id
+    )
+    {
+
+        $sql = "UPDATE rooms
+        SET status = IF(status='available', 'maintenance', 'available')
+        WHERE id = ?";
+
+
+        $statement = $connection->prepare($sql);
+
+        $statement->bind_param(
+            "i",
+            $id
+        );
+
+
+        return $statement->execute();
 
     }
 
