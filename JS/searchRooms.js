@@ -86,4 +86,3 @@ function searchRooms()
     xhttp.send();
 
 }
-
