@@ -3,45 +3,7 @@
 class BookingModel
 {
 
-    function createBooking(
-        $connection,
-        $user_id,
-        $room_id,
-        $checkin_date,
-        $checkout_date,
-        $total_price
-    )
-    {
-
-        $sql = "INSERT INTO bookings(
-            user_id,
-            room_id,
-            checkin_date,
-            checkout_date,
-            total_price
-        )
-
-        VALUES(
-            ?,?,?,?,?
-        )";
-
-
-        $statement = $connection->prepare($sql);
-
-        $statement->bind_param(
-            "iissd",
-            $user_id,
-            $room_id,
-            $checkin_date,
-            $checkout_date,
-            $total_price
-        );
-
-
-        return $statement->execute();
-
-    }
-
+    
 
 
     function getAllBookings($connection)
@@ -88,58 +50,7 @@ class BookingModel
 
 
 
-    function getBookingsByUser(
-    $connection,
-    $userId
-)
-{
-
-    $sql = "
-
-    SELECT
-
-    bookings.*,
-
-    room_types.name AS room_type_name
-
-    FROM bookings
-
-    JOIN rooms
-    ON bookings.room_id = rooms.id
-
-    JOIN room_types
-    ON rooms.room_type_id = room_types.id
-
-    WHERE bookings.user_id = ?
-
-    ORDER BY bookings.created_at DESC
-
-    ";
-
-
-
-    $statement =
-    $connection->prepare($sql);
-
-
-
-    $statement->bind_param(
-        "i",
-        $userId
-    );
-
-
-
-    $statement->execute();
-
-
-
-    return
-    $statement->get_result();
-
-}
-
-
+   
 
     function confirmBooking(
         $connection,
@@ -219,30 +130,7 @@ class BookingModel
 
 
 
-    function cancelBooking(
-        $connection,
-        $booking_id
-    )
-    {
-
-        $sql = "UPDATE bookings
-        SET status = 'Cancelled'
-        WHERE id = ?";
-
-
-        $statement = $connection->prepare($sql);
-
-        $statement->bind_param(
-            "i",
-            $booking_id
-        );
-
-
-        return $statement->execute();
-
-    }
-
-
+    
 
 
     function getBookingById(
@@ -354,41 +242,29 @@ function getTodayDepartures(
 
 }
 
-function getWeeklyRevenue(
-    $connection
-)
+function getWeeklyRevenue($connection)
 {
-
     $sql = "
-
-    SELECT
-
-    WEEK(checkin_date) AS week,
-
-    SUM(total_price) AS revenue
-
-    FROM bookings
-
-    WHERE
-
-    checkin_date >=
-    DATE_SUB(CURDATE(), INTERVAL 8 WEEK)
-
-    GROUP BY WEEK(checkin_date)
-
-    ORDER BY week ASC
-
+        SELECT
+            WEEK(checkin_date) AS week,
+            SUM(total_price) AS revenue
+        FROM bookings
+        WHERE
+            checkin_date >= DATE_SUB(CURDATE(), INTERVAL ? WEEK)
+        GROUP BY WEEK(checkin_date)
+        ORDER BY week ASC
     ";
 
+    $statement = $connection->prepare($sql);
 
+    $weeksLimit = 8;
+    $statement->bind_param("i", $weeksLimit);
 
-    $result =
-    $connection->query($sql);
+    $statement->execute();
 
-
+    $result = $statement->get_result();
 
     return $result;
-
 }
 
 }
