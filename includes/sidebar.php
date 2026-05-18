@@ -15,9 +15,25 @@ Admin Dashboard
 
 
 
-<a href="../Views/adminBookings.php">
+<a  href="../Views/adminBookings.php">
 
 Manage Bookings
+
+</a>
+
+
+
+<a href="../Controller/roomTypeController.php?action=list">
+
+Room Types
+
+</a>
+
+
+
+<a href="../Controller/AdminRoomController.php?action=list">
+
+Rooms
 
 </a>
 
