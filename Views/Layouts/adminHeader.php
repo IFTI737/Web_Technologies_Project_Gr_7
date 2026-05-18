@@ -14,7 +14,7 @@ include __DIR__ . "/../../includes/adminAuth.php";
     <div class="admin-header">
         <h1>Hotel Booking System</h1>
         <nav>
-            <a href="/HotelBookingSystemMerged/Controller/logout.php">Logout</a>
+            <a href="../Controller/logoutController.php">Logout</a>
         </nav>
     </div>
     <div class="container">

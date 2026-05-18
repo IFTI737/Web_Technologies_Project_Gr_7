@@ -263,7 +263,7 @@ if($action == 'edit')
             }
             else
             {
-                $dir = $_SERVER['DOCUMENT_ROOT'] . '/HotelBookingSystemMerged/public/uploads/rooms/';
+                $dir = $dir = __DIR__ . '/../public/uploads/';
 
                 if(!is_dir($dir))
                 {
@@ -278,9 +278,17 @@ if($action == 'edit')
                 if(move_uploaded_file($tmp, $dir . $filename))
                 {
                     if(!empty($data['thumbnail_path']) && 
-                       file_exists(__DIR__ . '/../' . $data['thumbnail_path']))
+                       file_exists(
+                                    __DIR__ .
+                                    '/../public/' .
+                                    $data['thumbnail_path']
+                                ))
                     {
-                        unlink(__DIR__ . '/../' . $data['thumbnail_path']);
+                        unlink(
+                                __DIR__ .
+                                '/../public/' .
+                                $data['thumbnail_path']
+                            );
                     }
 
                     $thumbnailPath =
