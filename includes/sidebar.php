@@ -39,7 +39,7 @@ Rooms
 
 
 
-<a href="../Views/userDashboard.php">
+<a href="../Views/profile.php">
 
 Profile
 
@@ -70,7 +70,7 @@ My Bookings
 
 
 
-<a href="../Views/userDashboard.php">
+<a href="../Views/profile.php">
 
 Profile
 

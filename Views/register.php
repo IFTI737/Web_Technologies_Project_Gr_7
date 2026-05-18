@@ -2,11 +2,20 @@
 
 session_start();
 
-$nameError = $_SESSION['nameError'] ?? "";
-$emailError = $_SESSION['emailError'] ?? "";
-$passwordError = $_SESSION['passwordError'] ?? "";
-$phoneError = $_SESSION['phoneError'] ?? "";
-$nationalityError = $_SESSION['nationalityError'] ?? "";
+$nameError =
+$_SESSION['nameError'] ?? "";
+
+$emailError =
+$_SESSION['emailError'] ?? "";
+
+$passwordError =
+$_SESSION['passwordError'] ?? "";
+
+$phoneError =
+$_SESSION['phoneError'] ?? "";
+
+$nationalityError =
+$_SESSION['nationalityError'] ?? "";
 
 unset($_SESSION['nameError']);
 unset($_SESSION['emailError']);
@@ -17,99 +26,190 @@ unset($_SESSION['nationalityError']);
 ?>
 
 <!DOCTYPE html>
+
 <html>
 
 <head>
 
-    <title>Register</title>
+<title>
+
+Register
+
+</title>
+
+<link
+rel="stylesheet"
+href="../CSS/task3.css">
 
 </head>
 
 <body>
 
-<form method="POST" action="../Controller/AuthController.php">
+<div class="auth-container">
 
-<table>
+<div class="auth-card">
 
-<tr>
-    <td>Name</td>
+<h2 class="page-title">
 
-    <td>
-        <input type="text" name="name">
-    </td>
+Register
 
-    <td style="color:red">
-        <?php echo $nameError; ?>
-    </td>
-</tr>
+</h2>
 
-<tr>
-    <td>Email</td>
 
-    <td>
-        <input type="email" name="email">
-    </td>
 
-    <td style="color:red">
-        <?php echo $emailError; ?>
-    </td>
-</tr>
+<form
+method="POST"
+action="../Controller/AuthController.php">
 
-<tr>
-    <td>Password</td>
+<div class="form-group">
 
-    <td>
-        <input type="password" name="password">
-    </td>
+<label>
 
-    <td style="color:red">
-        <?php echo $passwordError; ?>
-    </td>
-</tr>
+Name
 
-<tr>
-    <td>Phone</td>
+</label>
 
-    <td>
-        <input type="text" name="phone">
-    </td>
+<input
+type="text"
+name="name"
+class="form-input">
 
-    <td style="color:red">
-        <?php echo $phoneError; ?>
-    </td>
-</tr>
+<p class="error-text">
 
-<tr>
-    <td>Nationality</td>
+<?php echo $nameError; ?>
 
-    <td>
-        <input type="text" name="nationality">
-    </td>
+</p>
 
-    <td style="color:red">
-        <?php echo $nationalityError; ?>
-    </td>
-</tr>
+</div>
 
-<tr>
-    <td>
-        <input type="hidden" name="action" value="register">
 
-        <input type="submit" value="Register">
-    </td>
-</tr>
 
-<tr>
-    <td>Already have account?</td>
+<div class="form-group">
 
-    <td>
-        <a href="login.php">Login</a>
-    </td>
-</tr>
+<label>
 
-</table>
+Email
+
+</label>
+
+<input
+type="email"
+name="email"
+class="form-input">
+
+<p class="error-text">
+
+<?php echo $emailError; ?>
+
+</p>
+
+</div>
+
+
+
+<div class="form-group">
+
+<label>
+
+Password
+
+</label>
+
+<input
+type="password"
+name="password"
+class="form-input">
+
+<p class="error-text">
+
+<?php echo $passwordError; ?>
+
+</p>
+
+</div>
+
+
+
+<div class="form-group">
+
+<label>
+
+Phone
+
+</label>
+
+<input
+type="text"
+name="phone"
+class="form-input">
+
+<p class="error-text">
+
+<?php echo $phoneError; ?>
+
+</p>
+
+</div>
+
+
+
+<div class="form-group">
+
+<label>
+
+Nationality
+
+</label>
+
+<input
+type="text"
+name="nationality"
+class="form-input">
+
+<p class="error-text">
+
+<?php echo $nationalityError; ?>
+
+</p>
+
+</div>
+
+
+
+<input
+type="hidden"
+name="action"
+value="register">
+
+
+
+<button
+type="submit"
+class="simple-btn">
+
+Register
+
+</button>
 
 </form>
+
+
+
+<p class="auth-link">
+
+Already have account?
+
+<a href="login.php">
+
+Login
+
+</a>
+
+</p>
+
+</div>
+
+</div>
 
 </body>
 

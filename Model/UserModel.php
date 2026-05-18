@@ -132,10 +132,72 @@ class UserModel
 
     }
 
+    function updateUser(
+    $connection,
+    $id,
+    $name,
+    $email,
+    $phone,
+    $password
+)
+{
+
+    if(!empty($password))
+    {
+
+        $password =
+        md5($password);
+
+
+
+        $sql = "
+
+        UPDATE users
+
+        SET
+
+        name = '$name',
+
+        email = '$email',
+
+        phone = '$phone',
+
+        password = '$password'
+
+        WHERE id = '$id'
+
+        ";
+
+    }
+
+    else
+    {
+
+        $sql = "
+
+        UPDATE users
+
+        SET
+
+        name = '$name',
+
+        email = '$email',
+
+        phone = '$phone'
+
+        WHERE id = '$id'
+
+        ";
+
+    }
+
+
+
+    return $connection->query($sql);
+
 }
 
-
-
+}
 
 
 ?>

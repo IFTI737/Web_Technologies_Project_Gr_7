@@ -2,8 +2,11 @@
 
 session_start();
 
-$emailError = $_SESSION['emailError'] ?? "";
-$passwordError = $_SESSION['passwordError'] ?? "";
+$emailError =
+$_SESSION['emailError'] ?? "";
+
+$passwordError =
+$_SESSION['passwordError'] ?? "";
 
 unset($_SESSION['emailError']);
 unset($_SESSION['passwordError']);
@@ -11,71 +14,141 @@ unset($_SESSION['passwordError']);
 ?>
 
 <!DOCTYPE html>
+
 <html>
 
 <head>
 
-    <title>Login</title>
+<title>
+
+Login
+
+</title>
+
+<link
+rel="stylesheet"
+href="../CSS/task3.css">
 
 </head>
 
 <body>
 
-<form method="POST" action="../Controller/AuthController.php">
+<div class="auth-container">
 
-<table>
+<div class="auth-card">
 
-<tr>
-    <td>Email</td>
+<h2 class="page-title">
 
-    <td>
-        <input type="email" name="email">
-    </td>
+Login
 
-    <td style="color:red">
-        <?php echo $emailError; ?>
-    </td>
-</tr>
+</h2>
 
-<tr>
-    <td>Password</td>
 
-    <td>
-        <input type="password" name="password">
-    </td>
 
-    <td style="color:red">
-        <?php echo $passwordError; ?>
-    </td>
-</tr>
+<form
+method="POST"
+action="../Controller/AuthController.php">
 
-<tr>
-    <td>Remember Me</td>
+<div class="form-group">
 
-    <td>
-        <input type="checkbox" name="remember_me">
-    </td>
-</tr>
+<label>
 
-<tr>
-    <td>
-        <input type="hidden" name="action" value="login">
+Email
 
-        <input type="submit" value="Login">
-    </td>
-</tr>
+</label>
 
-<tr>
-    <td>Don't have account?</td>
+<input
+type="email"
+name="email"
+class="form-input">
 
-    <td>
-        <a href="register.php">Register</a>
-    </td>
-</tr>
 
-</table>
+
+<p class="error-text">
+
+<?php echo $emailError; ?>
+
+</p>
+
+</div>
+
+
+
+<div class="form-group">
+
+<label>
+
+Password
+
+</label>
+
+<input
+type="password"
+name="password"
+class="form-input">
+
+
+
+<p class="error-text">
+
+<?php echo $passwordError; ?>
+
+</p>
+
+</div>
+
+
+
+<div class="form-group">
+
+<label>
+
+<input
+type="checkbox"
+name="remember_me">
+
+Remember Me
+
+</label>
+
+</div>
+
+
+
+<input
+type="hidden"
+name="action"
+value="login">
+
+
+
+<button
+type="submit"
+class="simple-btn">
+
+Login
+
+</button>
 
 </form>
+
+
+
+<p class="auth-link">
+
+Don't have account?
+
+<a href="register.php">
+
+Register
+
+</a>
+
+</p>
+
+</div>
+
+</div>
 
 </body>
 
